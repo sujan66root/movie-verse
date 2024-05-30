@@ -17,16 +17,17 @@ A React project that fetches a list of popular movies from the TMDB API and disp
     ```
 
 3. Create a `.env` file in the root of the project and add your TMDB API key
+   Get a TMDP API Key from https://www.themoviedb.org/settings/api 
     ```env
     TMDB_API_KEY=your_tmdb_api_key
     ```
 
-4. Start the development server
+5. Start the development server
     ```bash
     npm start
     ```
 
-5. Open `http://localhost:3000` in your browser to view the app
+6. Open `http://localhost:3000` in your browser to view the app
 
 ## Usage
 - Use the search bar to filter movies by title
