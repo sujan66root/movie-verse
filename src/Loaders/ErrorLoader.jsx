@@ -1,4 +1,3 @@
-// src/components/ErrorLoader.js
 import React from 'react';
 
 const ErrorLoader = ({ message }) => {
