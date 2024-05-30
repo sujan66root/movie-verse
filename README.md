@@ -18,7 +18,7 @@ A React project that fetches a list of popular movies from the TMDB API and disp
 
 3. Create a `.env` file in the root of the project and add your TMDB API key
     ```env
-    TMDB_API_KEY=your_tmdb_api_key
+    REACT_APP_API_KEY=your_tmdb_api_key
     ```
 
 5. Start the development server
