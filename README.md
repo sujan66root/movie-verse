@@ -28,15 +28,9 @@ A React project that fetches a list of popular movies from the TMDB API and disp
 
 6. Open `http://localhost:3000` in your browser to view the app
 
-## Usage
-- Use the search bar to filter movies by title
-- Click on a movie card to view more details about the movie
-
 ## Technologies Used
 - React
 - Tailwind CSS
 - Axios
 - @tanstack/react-query
 
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
