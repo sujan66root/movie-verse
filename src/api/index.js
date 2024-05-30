@@ -3,6 +3,7 @@ import { BASE_URL } from "./config";
 
 const API_KEY = process.env.REACT_APP_API_KEY;
 
+// Getting popular movies with pagination support
 export const getPopularMovies = async (page = 1) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/popular`, {
@@ -13,12 +14,13 @@ export const getPopularMovies = async (page = 1) => {
     });
     return response.data;
   } catch (error) {
-    console.log("Error fetching popular movies:", error);
+    console.error("Error fetching popular movies:", error);
     throw error;
   }
 };
 
-export const getMoviesDetail = async (id) => {
+// Getting details of a specific movie by ID
+export const getMovieDetail = async (id) => {
   try {
     const response = await axios.get(`${BASE_URL}/movie/${id}`, {
       params: {
@@ -27,7 +29,7 @@ export const getMoviesDetail = async (id) => {
     });
     return response.data;
   } catch (error) {
-    console.log("Error fetching movie details:", error);
+    console.error("Error fetching movie details:", error);
     throw error;
   }
 };

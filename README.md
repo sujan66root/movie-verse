@@ -10,6 +10,12 @@ A React project that fetches a list of popular movies from the TMDB API and disp
     git clone https://github.com/sujan66root/movie-verse.git
     cd movie-verse
     ```
+    OR
+##  Download Zip
+1. Extract and Navigate to the project directory:
+    ```bash
+    cd movie-verse
+    ```
 
 2. Install dependencies
     ```bash
@@ -33,4 +39,5 @@ A React project that fetches a list of popular movies from the TMDB API and disp
 - Tailwind CSS
 - Axios
 - @tanstack/react-query
+- react-intersection-observer
 

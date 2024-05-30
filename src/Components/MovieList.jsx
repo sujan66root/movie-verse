@@ -9,23 +9,15 @@ import ErrorLoader from '../Loaders/ErrorLoader';
 const MovieList = () => {
     const [search, setSearch] = useState('');
 
-    const {
-        data,
-        error,
-        isLoading,
-        isFetching,
-        fetchNextPage,
-        hasNextPage,
-    } = useInfiniteQuery({
+    // Fetching popular movies with infinite scrolling
+    const { data, error, isLoading, isFetching, fetchNextPage, hasNextPage } = useInfiniteQuery({
         queryKey: ['movies'],
         queryFn: ({ pageParam = 1 }) => getPopularMovies(pageParam),
         getNextPageParam: (lastPage) => lastPage.page < lastPage.total_pages ? lastPage.page + 1 : undefined,
     });
 
-    const { ref, inView } = useInView({
-        threshold: 1,
-        triggerOnce: false,
-    });
+    // Using Intersection Observer to trigger loading more movies when bottom is in view
+    const { ref, inView } = useInView({ threshold: 1, triggerOnce: false });
 
     useEffect(() => {
         if (inView && hasNextPage && !isFetching) {
@@ -36,12 +28,12 @@ const MovieList = () => {
     if (isLoading && !data) return <Loader />;
 
     if (error) {
-        let errorMessage = "Unable to load movies. Please try again later.";
-        if (error.message === "Invalid API key") {
-            errorMessage = "Invalid API key. Please check your API key and try again.";
-        }
+        const errorMessage = error.message === "Invalid API key"
+            ? "Invalid API key. Please check your API key and try again."
+            : "Unable to load movies. Please try again later.";
         return <ErrorLoader message={errorMessage} />;
     }
+    // Filtering movies based on search query
     const filteredMovies = data.pages
         .flatMap(page => page.results)
         .filter(movie => movie.title.toLowerCase().includes(search.toLowerCase()));
@@ -67,19 +59,14 @@ const MovieList = () => {
                 </div>
                 <div ref={ref} className="h-1"></div>
                 <div className="flex justify-center mt-8">
-                    {isFetching ? (
-                        <div className='text-white'>Loading more movies...</div>
-                    ) : (
-                        hasNextPage && (
-                            <button
-                                className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
-                                onClick={() => fetchNextPage()}
-                                disabled={isFetching || !hasNextPage}
-                            >
+                    {isFetching && <div className='text-white'>Loading more movies...</div>}
+                    {!isFetching && hasNextPage && (
+                        <div className="flex justify-center mt-8">
+                            <button className="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+                                onClick={fetchNextPage} disabled={isFetching || !hasNextPage}>
                                 Load More
                             </button>
-
-                        )
+                        </div>
                     )}
                 </div>
             </div>
