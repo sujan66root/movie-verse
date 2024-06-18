@@ -1,5 +1,8 @@
 # Movie List App
 
+# Deployment Link
+Please view the app in the link: https://movie-verse-kohl.vercel.app
+
 ## Description
 A React project that fetches a list of popular movies from the TMDB API and displays them in a scrollable view. Each movie card shows the movie title, release year, and a brief description. The app includes search functionality to filter movies by title and displays detailed information after selecting the movie.
 
